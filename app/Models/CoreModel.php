@@ -15,8 +15,20 @@ use Ramsey\Uuid\Uuid;
 class CoreModel extends Model
 {
     use SoftDeletes;
+
+    /**
+     * Identifies that id will not be auto incrementing
+     *
+     * @var bool
+     */
     public $incrementing = false;
 
+    /**
+     * Function which automatically generates and adds UUID for model
+     * if id is not set
+     *
+     * @return void
+     */
     protected static function boot() : void
     {
         parent::boot();
