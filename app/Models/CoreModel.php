@@ -16,11 +16,11 @@ class CoreModel extends Model
 {
     use SoftDeletes;
     public $incrementing = false;
-    protected static function boot()
+
+    protected static function boot() : void
     {
         parent::boot();
-        static::creating(function ($model)
-        {
+        static::creating(function ($model) {
             if (!isset($model->attributes['id'])) {
                 $model->attributes['id'] = Uuid::uuid4();
             } else {
