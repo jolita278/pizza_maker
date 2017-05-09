@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class PMUserRoleConnections extends Model
 {
+    public $updated_at = false;
     /**
      * Table name
      * @var string
