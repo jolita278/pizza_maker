@@ -19,9 +19,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::group(['prefix' => 'api/v1'], function () {
     Route::group(['prefix' => 'pizza'], function () {
-        Route::get('/create', ['uses' => 'PMPizzaOrderController@create']);
-        Route::post('/create', ['as' => 'api.pizzaOrders.create', 'uses' => 'PMPizzaOrderController@store']);
-        Route::get('/{id}', ['uses' => 'PMPizzaOrderController@show']);
+        Route::post('/create', ['as' => 'api.pizzaOrders.create', 'uses' => 'PMPizzaOrderController@apiStore']);
+        Route::get('/{id}', ['uses' => 'PMPizzaOrderController@apiShow']);
     });
 });
 

@@ -2,7 +2,7 @@
 
 use Illuminate\Routing\Controller;
 
-class PMCheeseController extends Controller {
+class PMCheeseController extends BaseApiController {
 
 	/**
 	 * Display a listing of the resource.
@@ -84,5 +84,8 @@ class PMCheeseController extends Controller {
 	{
 		//
 	}
+
+
+
 
 }

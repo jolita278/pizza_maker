@@ -84,5 +84,27 @@ class PMPizzaOrderController extends Controller {
 	{
 		//
 	}
+    /**
+     * Store a newly created resource in storage.
+     * POST /pmpizzaorder
+     *
+     * @return mixed
+     */
+    public function apiStore()
+    {
+        return response()->json(['success'=>false,'message'=>'Method not implemented']);
+    }
+
+    /**
+     * Display the specified resource.
+     * GET /pmpizzaorder/{id}
+     *
+     * @param  int $id
+     * @return Response
+     */
+    public function apiShow($id)
+    {
+        return response()->json(['success'=>false,'message'=>'Method not implemented']);
+    }
 
 }
