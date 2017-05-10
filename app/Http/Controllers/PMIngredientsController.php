@@ -1,8 +1,7 @@
 <?php namespace App\Http\Controllers;
 
-use Illuminate\Routing\Controller;
 
-class PMIngredientsController extends Controller {
+class PMIngredientsController extends BaseAPIController {
 
 	/**
 	 * Display a listing of the resource.
