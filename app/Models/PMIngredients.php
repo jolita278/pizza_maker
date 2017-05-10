@@ -10,7 +10,7 @@ class PMIngredients extends CoreModel
      * Table name
      * @var string
      */
-    protected $table = 'pm_ingredients';
+    protected $table = 'pm_ingridients';
 
     /**
      * Fields which will be manipulated

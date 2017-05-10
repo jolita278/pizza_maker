@@ -29,7 +29,7 @@ class CoreModel extends Model
      *
      * @return void
      */
-    protected static function boot() : void
+    protected static function boot()
     {
         parent::boot();
 
