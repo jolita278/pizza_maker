@@ -16,5 +16,5 @@ class PMRoles extends CoreModel
      * Fields which will be manipulated
      * @var array
      */
-    protected $fillable = ['id', 'name', 'permission_id'];
+    protected $fillable = ['id', 'name'];
 }

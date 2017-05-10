@@ -16,5 +16,5 @@ class PMPizzaOrder extends CoreModel
      * Fields which will be manipulated
      * @var array
      */
-    protected $fillable = ['id', 'name', 'pad_id', 'cheese_id', 'description', 'user_id'];
+    protected $fillable = ['id', 'pad_id', 'cheese_id', 'description', 'user_id'];
 }
