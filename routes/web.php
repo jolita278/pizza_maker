@@ -90,7 +90,7 @@ Route::group(['prefix' => 'admin'], function () {
                 Route::get('/', ['uses' => 'PMRolesController@show']);
                 Route::get('/edit', ['as' => 'app.roles.edit', 'uses' => 'PMRolesController@edit']);
                 Route::post('/edit', ['uses' => 'PMRolesController@update']);
-                Route::delete('/}', ['as' => 'app.roles.delete', 'uses' => 'PMRolesController@destroy']);
+                Route::delete('/', ['as' => 'app.roles.delete', 'uses' => 'PMRolesController@destroy']);
             });
         });
         Route::group(['prefix' => 'users'], function () {
