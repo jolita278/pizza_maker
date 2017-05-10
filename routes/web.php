@@ -11,10 +11,13 @@
 |
 */
 
-Route::group(['prefix' => 'pizza'], function () {
-    Route::get('/', ['uses' => 'PMPizzaOrderController@index']);
-    Route::get('/create', ['uses' => 'PMPizzaOrderController@create']);
-    Route::post('/create', ['uses' => 'PMPizzaOrderController@store']);
+Route::group(['prefix' => 'user'], function () {
+    Route::group(['prefix' => 'pizzaOrder'], function () {
+        Route::get('/', ['as' => 'app.cheese.index', 'uses' => 'PMPizzaOrderController@index']);
+        Route::get('/create', ['uses' => 'PMPizzaOrderController@create']);
+        Route::post('/create', ['as' => 'app.pizzaOrders.create', 'uses' => 'PMPizzaOrderController@store']);
+        Route::get('/', ['uses' => 'PMPizzaOrderController@show']);
+    });
 });
 
 Route::group(['prefix' => 'admin'], function () {
