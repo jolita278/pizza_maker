@@ -16,3 +16,12 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::group(['prefix' => 'api/v1'], function () {
+    Route::group(['prefix' => 'pizza'], function () {
+        Route::get('/create', ['uses' => 'PMPizzaOrderController@create']);
+        Route::post('/create', ['as' => 'api.pizzaOrders.create', 'uses' => 'PMPizzaOrderController@store']);
+        Route::get('/{id}', ['uses' => 'PMPizzaOrderController@show']);
+    });
+});
+
