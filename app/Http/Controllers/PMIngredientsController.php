@@ -3,85 +3,79 @@
 
 class PMIngredientsController extends BaseAPIController {
 
-	/**
-	 * Display a listing of the resource.
-	 * GET /pmingredients
-	 *
-	 * @return Response
-	 */
-	public function index()
-	{
-		//
-	}
 
-	/**
-	 * Show the form for creating a new resource.
-	 * GET /pmingredients/create
-	 *
-	 * @return Response
-	 */
-	public function create()
-	{
-		//
-	}
+    public function adminIndex()
+    {
+        //
+    }
 
-	/**
-	 * Store a newly created resource in storage.
-	 * POST /pmingredients
-	 *
-	 * @return Response
-	 */
-	public function store()
-	{
-		//
-	}
+    /**
+     * Show the form for creating a new resource.
+     * GET /pmingredients/admincreate
+     *
+     * @return Response
+     */
+    public function adminCreate()
+    {
+        //
+    }
 
-	/**
-	 * Display the specified resource.
-	 * GET /pmingredients/{id}
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function show($id)
-	{
-		//
-	}
+    /**
+     * Store a newly created resource in storage.
+     * POST /pmingredients
+     *
+     * @return Response
+     */
+    public function adminStore()
+    {
+        //
+    }
 
-	/**
-	 * Show the form for editing the specified resource.
-	 * GET /pmingredients/{id}/edit
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function edit($id)
-	{
-		//
-	}
+    /**
+     * Display the specified resource.
+     * GET /pmingredients/{id}
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function adminShow($id)
+    {
+        //
+    }
 
-	/**
-	 * Update the specified resource in storage.
-	 * PUT /pmingredients/{id}
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function update($id)
-	{
-		//
-	}
+    /**
+     * Show the form for editing the specified resource.
+     * GET /pmingredients/{id}/adminedit
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function adminEdit($id)
+    {
+        //
+    }
 
-	/**
-	 * Remove the specified resource from storage.
-	 * DELETE /pmingredients/{id}
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function destroy($id)
-	{
-		//
-	}
+    /**
+     * Update the specified resource in storage.
+     * PUT /pmingredients/{id}
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function adminUpdate($id)
+    {
+        //
+    }
 
+    /**
+     * Remove the specified resource from storage.
+     * DELETE /pmingredients/{id}
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function adminDestroy($id)
+    {
+        //
+    }
 }
