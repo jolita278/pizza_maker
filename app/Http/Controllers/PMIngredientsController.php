@@ -1,12 +1,17 @@
 <?php namespace App\Http\Controllers;
 
 
+use App\Models\PMIngredients;
+
 class PMIngredientsController extends BaseAPIController {
 
 
     public function adminIndex()
     {
-        return view('adminList');
+        $configuration ['list']=PMIngredients::get()->toArray();
+        $configuration ['routeShow']='app.admin.ingredients.single';
+        $configuration ['routeEdit']='app.admin.ingredients.edit';
+        return view('admin.adminList', $configuration);
     }
 
     /**
@@ -40,7 +45,7 @@ class PMIngredientsController extends BaseAPIController {
      */
     public function adminShow($id)
     {
-        return view('adminSingle');
+        return view('admin.adminSingle');
     }
 
     /**
@@ -52,7 +57,7 @@ class PMIngredientsController extends BaseAPIController {
      */
     public function adminEdit($id)
     {
-        //
+        return view('admin.adminSingle');
     }
 
     /**
@@ -76,6 +81,6 @@ class PMIngredientsController extends BaseAPIController {
      */
     public function adminDestroy($id)
     {
-        //
+
     }
 }

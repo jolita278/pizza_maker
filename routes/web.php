@@ -38,10 +38,10 @@ Route::group(['prefix' => 'admin'], function () {
         Route::post('/create', ['as' => 'app.admin.ingredients.create', 'uses' => 'PMIngredientsController@adminStore']);
 
         Route::group(['prefix' => '{id}'], function () {
-            Route::get('/', ['uses' => 'PMIngredientsController@adminShow']);
             Route::get('/edit', ['as' => 'app.admin.ingredients.edit', 'uses' => 'PMIngredientsController@adminEdit']);
             Route::post('/edit', ['uses' => 'PMIngredientsController@adminUpdate']);
-            Route::delete('/', ['as' => 'app.admin.ingredients.delete', 'uses' => 'PMIngredientsController@adminDestroy']);
+            Route::get('/', ['uses' => 'PMIngredientsController@adminShow']);
+            Route::delete('/', ['as' => 'app.admin.ingredients.single', 'uses' => 'PMIngredientsController@adminDestroy']);
         });
     });
     Route::group(['prefix' => 'pad'], function () {
