@@ -12,7 +12,7 @@ class PMPizzaOrderController extends BaseAPIController {
 	 */
 	public function create()
 	{
-		//
+		return view('userSingle');
 	}
 
 	/**
@@ -35,7 +35,7 @@ class PMPizzaOrderController extends BaseAPIController {
 	 */
 	public function show($id)
 	{
-		//
+        return view('userSingle');
 	}
 
     /**
@@ -46,7 +46,7 @@ class PMPizzaOrderController extends BaseAPIController {
      */
     public function adminIndex()
     {
-        //
+        return view('adminList');
     }
 
     /**
@@ -80,7 +80,7 @@ class PMPizzaOrderController extends BaseAPIController {
      */
     public function adminShow($id)
     {
-        //
+        return view('adminSingle');
     }
 
     /**
