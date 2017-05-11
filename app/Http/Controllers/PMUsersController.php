@@ -1,8 +1,8 @@
 <?php namespace App\Http\Controllers;
 
-use Illuminate\Routing\Controller;
 
-class PMUsersController extends Controller {
+
+class PMUsersController extends BaseAPIController {
 
 	/**
 	 * Display a listing of the resource.
