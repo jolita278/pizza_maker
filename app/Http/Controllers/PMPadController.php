@@ -23,7 +23,7 @@ class PMPadController extends BaseAPIController {
      */
     public function adminCreate()
     {
-        //
+        return view('adminList');
     }
 
     /**
@@ -46,7 +46,7 @@ class PMPadController extends BaseAPIController {
      */
     public function adminShow($id)
     {
-        //
+        return view('adminSingle');
     }
 
     /**

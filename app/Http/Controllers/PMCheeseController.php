@@ -12,7 +12,7 @@ class PMCheeseController extends BaseAPIController {
      */
     public function adminIndex()
     {
-        //
+        return view('adminList');
     }
 
     /**
@@ -46,7 +46,7 @@ class PMCheeseController extends BaseAPIController {
      */
     public function adminShow($id)
     {
-        //
+        return view('adminSingle');
     }
 
     /**

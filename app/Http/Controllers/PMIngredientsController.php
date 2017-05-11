@@ -6,7 +6,7 @@ class PMIngredientsController extends BaseAPIController {
 
     public function adminIndex()
     {
-        //
+        return view('adminList');
     }
 
     /**
@@ -40,7 +40,7 @@ class PMIngredientsController extends BaseAPIController {
      */
     public function adminShow($id)
     {
-        //
+        return view('adminSingle');
     }
 
     /**
