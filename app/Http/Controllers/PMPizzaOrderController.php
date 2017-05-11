@@ -1,8 +1,7 @@
 <?php namespace App\Http\Controllers;
 
-use Illuminate\Routing\Controller;
 
-class PMPizzaOrderController extends Controller {
+class PMPizzaOrderController extends BaseAPIController {
 
 	/**
 	 * Display a listing of the resource.
