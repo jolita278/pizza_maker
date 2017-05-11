@@ -1,8 +1,8 @@
 <?php namespace App\Http\Controllers;
 
-use Illuminate\Routing\Controller;
 
-class PMCheeseController extends Controller {
+
+class PMCheeseController extends BaseAPIController {
 
 	/**
 	 * Display a listing of the resource.
