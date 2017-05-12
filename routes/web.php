@@ -18,7 +18,7 @@ Route::group(['prefix' => 'admin'], function () {
             Route::get('/', ['uses' => 'PMPizzaOrderController@adminShow']);
             Route::get('/edit', ['as' => 'app.admin.pizzaOrders.edit', 'uses' => 'PMPizzaOrderController@adminEdit']);
             Route::post('/edit', ['uses' => 'PMPizzaOrderController@adminUpdate']);
-            Route::delete('/', ['as' => 'app.admin.pizzaOrders.delete', 'uses' => 'PMPizzaOrderController@adminDestroy']);
+            Route::delete('/', ['as' => 'app.admin.pizzaOrders.showDelete', 'uses' => 'PMPizzaOrderController@adminDestroy']);
         });
     });
     Route::group(['prefix' => 'cheese'], function () {
@@ -30,7 +30,7 @@ Route::group(['prefix' => 'admin'], function () {
             Route::get('/', ['uses' => 'PMCheeseController@adminShow']);
             Route::get('/edit', ['as' => 'app.admin.cheese.edit', 'uses' => 'PMCheeseController@adminEdit']);
             Route::post('/edit', ['uses' => 'PMCheeseController@adminUpdate']);
-            Route::delete('/', ['as' => 'app.admin.cheese.delete', 'uses' => 'PMCheeseController@adminDestroy']);
+            Route::delete('/', ['as' => 'app.admin.cheese.showDelete', 'uses' => 'PMCheeseController@adminDestroy']);
         });
     });
     Route::group(['prefix' => 'ingredients'], function () {
@@ -42,7 +42,7 @@ Route::group(['prefix' => 'admin'], function () {
             Route::get('/edit', ['as' => 'app.admin.ingredients.edit', 'uses' => 'PMIngredientsController@adminEdit']);
             Route::post('/edit', ['uses' => 'PMIngredientsController@adminUpdate']);
             Route::get('/', ['uses' => 'PMIngredientsController@adminShow']);
-            Route::delete('/', ['as' => 'app.admin.ingredients.single', 'uses' => 'PMIngredientsController@adminDestroy']);
+            Route::delete('/', ['as' => 'app.admin.ingredients.showDelete', 'uses' => 'PMIngredientsController@adminDestroy']);
         });
     });
     Route::group(['prefix' => 'pad'], function () {
@@ -54,7 +54,7 @@ Route::group(['prefix' => 'admin'], function () {
             Route::get('/', ['uses' => 'PMPadController@adminShow']);
             Route::get('/edit', ['as' => 'app.admin.pad.edit', 'uses' => 'PMPadController@adminEdit']);
             Route::post('/edit', ['uses' => 'PMPadController@adminUpdate']);
-            Route::delete('/', ['as' => 'app.admin.pad.delete', 'uses' => 'PMPadController@adminDestroy']);
+            Route::delete('/', ['as' => 'app.admin.pad.showDelete', 'uses' => 'PMPadController@adminDestroy']);
         });
     });
     Route::group(['prefix' => 'permissions'], function () {
@@ -66,7 +66,7 @@ Route::group(['prefix' => 'admin'], function () {
             Route::get('/', ['uses' => 'PMPermissionsController@adminShow']);
             Route::get('/edit', ['as' => 'app.admin.permissions.edit', 'uses' => 'PMPermissionsController@adminEdit']);
             Route::post('/edit', ['uses' => 'PMPermissionsController@adminUpdate']);
-            Route::delete('/', ['as' => 'app.admin.permissions.delete', 'uses' => 'PMPermissionsController@adminDestroy']);
+            Route::delete('/', ['as' => 'app.admin.permissions.showDelete', 'uses' => 'PMPermissionsController@adminDestroy']);
         });
     });
     Route::group(['prefix' => 'roles'], function () {
@@ -78,7 +78,7 @@ Route::group(['prefix' => 'admin'], function () {
             Route::get('/', ['uses' => 'PMRolesController@adminShow']);
             Route::get('/edit', ['as' => 'app.admin.roles.edit', 'uses' => 'PMRolesController@adminEdit']);
             Route::post('/edit', ['uses' => 'PMRolesController@adminUpdate']);
-            Route::delete('/', ['as' => 'app.admin.roles.delete', 'uses' => 'PMRolesController@adminDestroy']);
+            Route::delete('/', ['as' => 'app.admin.roles.showDelete', 'uses' => 'PMRolesController@adminDestroy']);
         });
     });
     Route::group(['prefix' => 'users'], function () {
@@ -90,7 +90,7 @@ Route::group(['prefix' => 'admin'], function () {
             Route::get('/', ['uses' => 'PMUsersController@adminShow']);
             Route::get('/edit', ['as' => 'app.user.edit', 'uses' => 'PMUsersController@adminEdit']);
             Route::post('/edit', ['uses' => 'PMUsersController@adminUpdate']);
-            Route::delete('/', ['as' => 'app.admin.user.delete', 'uses' => 'PMUsersController@adminDestroy']);
+            Route::delete('/', ['as' => 'app.admin.user.showDelete', 'uses' => 'PMUsersController@adminDestroy']);
         });
     });
 });
