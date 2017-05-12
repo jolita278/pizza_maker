@@ -16,7 +16,7 @@
             <a href="{{route($routeEdit, $single['id'])}}">
                 <button>Koreguoti</button>
             </a>
-            <a onclick="deleteItem('{{route($routeShow, $single['id'])}}')">
+            <a onclick="deleteItem('{{route($routeShowDelete, $single['id'])}}')">
                 <button>Ištrinti</button>
             </a>
         </tbody>

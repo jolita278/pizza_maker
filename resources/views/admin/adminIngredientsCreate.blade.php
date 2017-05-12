@@ -16,10 +16,9 @@
 
     @endif
 
-
-    {!! Form::open(['url' => route('app.admin.ingredients.create')]) !!}
+    {!! Form::open(['url' => route($route)]) !!}
     <br>
-    {{ Form::label('name', 'Ingridiento pavadinimas')}}<br>
+    {{ Form::label('name', 'Pavadinimas')}}<br>
     {{Form::text('name')}}
 
     <br>

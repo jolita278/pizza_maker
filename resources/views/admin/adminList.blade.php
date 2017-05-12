@@ -32,7 +32,7 @@
 
                 @endforeach
 
-                <td><a href="{{route($routeShow, $record['id'])}}">
+                <td><a href="{{route($routeShowDelete, $record['id'])}}">
                         <button>Peržiūrėti</button>
                     </a></td>
 
@@ -40,7 +40,7 @@
                         <button>Koreguoti</button>
                     </a></td>
 
-                <td><a onclick="deleteItem('{{route($routeShow, $record['id'])}}')">
+                <td><a onclick="deleteItem('{{route($routeShowDelete, $record['id'])}}')">
                         <button>Ištrinti</button>
                     </a></td>
             </tr>
