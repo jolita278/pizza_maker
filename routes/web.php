@@ -2,6 +2,7 @@
 
 
 Route::group(['prefix' => 'pizza'], function () {
+    Route::get('/', ['uses' => 'PMPizzaOrderController@index']);
     Route::get('/create', ['uses' => 'PMPizzaOrderController@create']);
     Route::post('/create', ['as' => 'app.pizzaOrders.create', 'uses' => 'PMPizzaOrderController@store']);
     Route::get('/{id}', ['uses' => 'PMPizzaOrderController@show']);
