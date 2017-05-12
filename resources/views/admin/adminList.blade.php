@@ -4,11 +4,17 @@
 
     <table class="table table-condensed">
         <thead>
+        <br/>
+        <a href="{{route($routeNew)}}">
+                <button>Naujas</button>
+            </a><br/><br/>
+
         <tr>
 
             @foreach($list [0] as $key => $value)
 
                 <th>{{$key}}</th>
+
             @endforeach
             <th>View</th>
             <th>Edit</th>
@@ -34,7 +40,7 @@
                         <button>Koreguoti</button>
                     </a></td>
 
-                <td><a onclick="deleteItem('{{route($routeShow, $record['id'])}}')" >
+                <td><a onclick="deleteItem('{{route($routeShow, $record['id'])}}')">
                         <button>Ištrinti</button>
                     </a></td>
             </tr>
@@ -58,16 +64,16 @@
 
         function deleteItem(route) {
             $.ajax({
-                url: 'route',
+                url: route,
+                dataType : 'json',
                 type: 'DELETE',
-                dataType: 'json',
-                success: function(){
+                success: function () {
                     alert('DELETED');
-                                    },
-                error:function(){
+                },
+                error: function () {
                     alert('ERROR');
                 }
-            })
+            });
         }
 
     </script>
