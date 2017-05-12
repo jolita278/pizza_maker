@@ -2,6 +2,8 @@
 
 
 
+use App\Models\PMUsers;
+
 class PMUsersController extends BaseAPIController {
 
     /**
@@ -12,7 +14,8 @@ class PMUsersController extends BaseAPIController {
      */
     public function adminIndex()
     {
-        return view('adminList');
+        $configuration ['list'] = PMUsers::get()->toArray();
+        return view('admin.adminList', $configuration);
     }
 
     /**

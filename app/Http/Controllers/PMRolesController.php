@@ -2,6 +2,8 @@
 
 
 
+use App\Models\PMRoles;
+
 class PMRolesController extends BaseAPIController {
 
     /**
@@ -12,7 +14,8 @@ class PMRolesController extends BaseAPIController {
      */
     public function adminIndex()
     {
-        return view('adminList');
+        $configuration ['list'] = PMRoles::get()->toArray();
+        return view('admin.adminList', $configuration);
     }
 
     /**

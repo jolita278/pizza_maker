@@ -2,6 +2,8 @@
 
 
 
+use App\Models\PMPermissions;
+
 class PMPermissionsController extends BaseAPIController {
 
     /**
@@ -12,7 +14,8 @@ class PMPermissionsController extends BaseAPIController {
      */
     public function adminIndex()
     {
-        //
+        $configuration ['list'] = PMPermissions::get()->toArray();
+        return view('admin.adminList', $configuration);
     }
 
     /**
@@ -23,7 +26,7 @@ class PMPermissionsController extends BaseAPIController {
      */
     public function adminCreate()
     {
-        return view('adminList');
+        //
     }
 
     /**

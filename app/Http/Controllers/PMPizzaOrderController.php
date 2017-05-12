@@ -1,6 +1,8 @@
 <?php namespace App\Http\Controllers;
 
 
+use App\Models\PMPizzaOrder;
+
 class PMPizzaOrderController extends BaseAPIController {
 
 
@@ -12,7 +14,8 @@ class PMPizzaOrderController extends BaseAPIController {
 	 */
 	public function create()
 	{
-		return view('userSingle');
+        $configuration ['list'] = PMPizzaOrder::get()->toArray();
+        return view('admin.adminList', $configuration);
 	}
 
 	/**

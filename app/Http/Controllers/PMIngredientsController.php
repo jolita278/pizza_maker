@@ -5,14 +5,31 @@ use App\Models\PMIngredients;
 
 class PMIngredientsController extends BaseAPIController
 {
-
+    /**
+     * Display a listing of the resource.
+     * GET /pmingredients
+     *
+     * @return Response
+     */
     public function adminIndex()
     {
+        $configuration = $this->getRouteData();
         $configuration ['list'] = PMIngredients::get()->toArray();
-        $configuration ['routeShow'] = 'app.admin.ingredients.single';
+        return view('admin.adminList', $configuration);
+    }
+
+    /**
+     * Get route data
+     *
+     * @return array
+     */
+    public function getRouteData()
+    {
+        $configuration = [];
+        $configuration ['routeShowDelete'] = 'app.admin.ingredients.showDelete';
         $configuration ['routeEdit'] = 'app.admin.ingredients.edit';
         $configuration ['routeNew'] = 'app.admin.ingredients.create';
-        return view('admin.adminList', $configuration);
+        return $configuration;
     }
 
     /**
@@ -23,7 +40,9 @@ class PMIngredientsController extends BaseAPIController
      */
     public function adminCreate()
     {
-        return view('admin.adminIngredientsCreate');
+        $route='app.admin.ingredients.create';
+        return view('admin.adminIngredientsCreate',$route);
+
     }
 
     /**
@@ -46,8 +65,7 @@ class PMIngredientsController extends BaseAPIController
 
             return view('admin.adminIngredientsCreate', $config);
 
-        }
-        elseif ($calories == null) {
+        } elseif ($calories == null) {
 
             $config['error'] = ['id' => 'Klaida 00002', 'message' => 'Neužpildytas laukas "Kalorijos"!'];
 
@@ -76,9 +94,8 @@ class PMIngredientsController extends BaseAPIController
      */
     public function adminShow($id)
     {
+        $configuration = $this->getRouteData();
         $configuration ['single'] = PMIngredients::find($id)->toArray();
-        $configuration ['routeShow'] = 'app.admin.ingredients.single';
-        $configuration ['routeEdit'] = 'app.admin.ingredients.edit';
         return view('admin.adminSingle', $configuration);
     }
 
