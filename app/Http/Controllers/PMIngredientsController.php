@@ -14,7 +14,7 @@ class PMIngredientsController extends BaseAPIController
     public function adminIndex()
     {
         $configuration = $this->getRoutesData();
-        $configuration ['list'] = PMIngredients::get()->toArray();
+        $configuration ['list'] = PMIngredients::orderBy('updated_at', 'desc')->get()->toArray();
         return view('admin.adminList', $configuration);
     }
 
@@ -26,6 +26,7 @@ class PMIngredientsController extends BaseAPIController
     public function getRoutesData()
     {
         $configuration = [];
+        $configuration ['routeList'] = 'app.admin.ingredients.index';
         $configuration ['routeShowDelete'] = 'app.admin.ingredients.showDelete';
         $configuration ['routeEdit'] = 'app.admin.ingredients.edit';
         $configuration ['routeNew'] = 'app.admin.ingredients.create';
@@ -61,21 +62,26 @@ class PMIngredientsController extends BaseAPIController
 
             $config['error'] = ['id' => 'Klaida 00002', 'message' => 'Neužpildytas laukas "Ingridiento pavadinimas" !'];
 
-            return view('admin.adminIngredientsCreate', $config);
+            return $this->adminIndex($config);
 
         } elseif ($calories == null) {
 
             $config['error'] = ['id' => 'Klaida 00002', 'message' => 'Neužpildytas laukas "Kalorijos"!'];
 
-            return view('admin.adminIngredientsCreate', $config);
+            return $this->adminIndex($config);
 
         }
 
-        PMIngredients::create();
+        PMIngredients::create(
+            [
+                'name' => $data['name'],
+                'calories' => $data['calories'],
+            ]
+        );
 
         $config['success_message'] = ['id' => 'Įrašas sėkmingai įrašytas į DB! ', 'message' => 'Sukurtas naujas ingridientas -  ' . $data['name']];
 
-        return view('admin.adminIngredientsCreate', $config);
+        return $this->adminIndex($config);
     }
 
     /**
