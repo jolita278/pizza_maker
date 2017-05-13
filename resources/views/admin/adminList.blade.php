@@ -1,55 +1,52 @@
 @extends('admin.core')
 
 @section('content')
+    <div class="container">
+        <h2>Picos komponentų sąrašas</h2>
+        <table class="table table-hover">
+            <thead>
+            <br/>
+            <a href="{{route($routeNew)}}" class="btn btn-primary btn-lg">Naujas</a>
+            <br/><br/>
 
-    <table class="table table-condensed">
-        <thead>
-        <br/>
-        <a href="{{route($routeNew)}}">
-                <button>Naujas</button>
-            </a><br/><br/>
-
-        <tr>
-
-            @foreach($list [0] as $key => $value)
-
-                <th>{{$key}}</th>
-
-            @endforeach
-            <th>View</th>
-            <th>Edit</th>
-            <th>Delete</th>
-        </tr>
-
-        </thead>
-        <tbody>
-        @foreach ($list as $key => $record)
             <tr>
-                @foreach ($record as $key => $value)
-                    <td>
-                        {{$value}}
-                    </td>
+
+                @foreach($list [0] as $key => $value)
+
+                    <th>{{$key}}</th>
 
                 @endforeach
 
-                <td><a href="{{route($routeShowDelete, $record['id'])}}">
-                        <button>Peržiūrėti</button>
-                    </a></td>
-
-                <td><a href="{{route($routeEdit, $record['id'])}}">
-                        <button>Koreguoti</button>
-                    </a></td>
-
-                <td><a onclick="deleteItem('{{route($routeShowDelete, $record['id'])}}')">
-                        <button>Ištrinti</button>
-                    </a></td>
             </tr>
 
-        @endforeach
+            </thead>
+            <tbody>
+            @foreach ($list as $key => $record)
+                <tr>
+                    @foreach ($record as $key => $value)
+                        <td>
+                            {{$value}}
+                        </td>
 
-        </tbody>
-    </table>
+                    @endforeach
 
+                    <td><a href="{{route($routeShowDelete, $record['id'])}}"
+                           class="btn btn-primary btn-sm">Peržiūrėti</a>
+                    </td>
+
+                    <td><a href="{{route($routeEdit, $record['id'])}}" class="btn btn-info btn-sm">Koreguoti</a>
+                    </td>
+
+                    <td><a onclick="deleteItem('{{route($routeShowDelete, $record['id'])}}')"
+                           class="btn btn-info btn-sm">Ištrinti</a>
+                    </td>
+                </tr>
+
+            @endforeach
+
+            </tbody>
+        </table>
+    </div>
 @endsection
 
 @section('scripts')
@@ -65,7 +62,7 @@
         function deleteItem(route) {
             $.ajax({
                 url: route,
-                dataType : 'json',
+                dataType: 'json',
                 type: 'DELETE',
                 success: function () {
                     alert('DELETED');

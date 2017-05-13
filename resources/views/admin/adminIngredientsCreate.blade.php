@@ -15,20 +15,23 @@
         @endforeach
 
     @endif
+    <div class="container">
+        <h2>Sukurti naują įrašą</h2>
 
-    {!! Form::open(['url' => route($route)]) !!}
-    <br>
-    {{ Form::label('name', 'Pavadinimas')}}<br>
-    {{Form::text('name')}}
+        {!! Form::open(['url' => route('app.admin.ingredients.create')]) !!}
+        <br>
+        {{ Form::label('name', 'Pavadinimas')}}<br>
+        {{Form::text('name')}}
 
-    <br>
-    {{ Form::label('calories', 'Kalorijos')}}<br>
-    {{Form::text('calories')}}
+        <br>
+        {{ Form::label('calories', 'Kalorijos')}}<br>
+        {{Form::text('calories')}}
 
-    <br>
-    <br>
+        <br>
+        <br>
 
-    {{ Form::submit('Patvirtinti') }} {{--TODO:: button reset--}}
+        {{ Form::submit('Patvirtinti') }} {{--TODO:: button reset--}}
 
-    {!! Form::close() !!}
+        {!! Form::close() !!}
+    </div>
 @endsection

@@ -1,27 +1,28 @@
 @extends('admin.core')
 
 @section('adminSingle')
-    <table class="table table-condensed">
+    <div class="container">
+    <h2>Įrašo duomenys</h2>
+
+    <table class="table table-hover">
         <thead>
         <br>
         </thead>
         <tbody>
 
         @foreach($single as $key => $value)
-            <tr><td>{{$key}} </td>
+            <tr>
+                <td class="col-md-2">{{$key}} </td>
                 <td> {{$value}}</td>
-        @endforeach
-
+                @endforeach
             </tr>
-            <a href="{{route($routeEdit, $single['id'])}}">
-                <button>Koreguoti</button>
-            </a>
-            <a onclick="deleteItem('{{route($routeShowDelete, $single['id'])}}')">
-                <button>Ištrinti</button>
-            </a>
+            <a href="{{route($routeEdit, $single['id'])}}" class="btn btn-primary btn-sm">Koreguoti</a>
+
+            <a onclick="deleteItem('{{route($routeShowDelete, $single['id'])}}')"
+               class="btn btn-info btn-sm">Ištrinti</a>
         </tbody>
     </table>
-
+</div>
 @endsection
 
 @section('scripts')
@@ -37,7 +38,7 @@
         function deleteItem(route) {
             $.ajax({
                 url: route,
-                dataType : 'json',
+                dataType: 'json',
                 type: 'DELETE',
                 success: function () {
                     alert('DELETED');
