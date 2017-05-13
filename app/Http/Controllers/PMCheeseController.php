@@ -86,6 +86,8 @@ class PMCheeseController extends BaseAPIController {
      */
     public function adminDestroy($id)
     {
-        //
+        PMCheese::destroy($id);
+
+        return json_encode(["success" => true, "id" => $id]);
     }
 }

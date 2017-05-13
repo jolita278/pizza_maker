@@ -13,17 +13,16 @@ class PMIngredientsController extends BaseAPIController
      */
     public function adminIndex()
     {
-        $configuration = $this->getRouteData();
+        $configuration = $this->getRoutesData();
         $configuration ['list'] = PMIngredients::get()->toArray();
         return view('admin.adminList', $configuration);
     }
-
     /**
-     * Get route data
+     * Get routes data
      *
      * @return array
      */
-    public function getRouteData()
+    public function getRoutesData()
     {
         $configuration = [];
         $configuration ['routeShowDelete'] = 'app.admin.ingredients.showDelete';
@@ -31,7 +30,6 @@ class PMIngredientsController extends BaseAPIController
         $configuration ['routeNew'] = 'app.admin.ingredients.create';
         return $configuration;
     }
-
     /**
      * Show the form for creating a new resource.
      * GET /pmingredients/admincreate
@@ -40,9 +38,7 @@ class PMIngredientsController extends BaseAPIController
      */
     public function adminCreate()
     {
-        $route='app.admin.ingredients.create';
-        return view('admin.adminIngredientsCreate',$route);
-
+        return view('admin.adminIngredientsCreate');
     }
 
     /**
@@ -94,8 +90,10 @@ class PMIngredientsController extends BaseAPIController
      */
     public function adminShow($id)
     {
-        $configuration = $this->getRouteData();
+        $configuration = $this->getRoutesData();
+
         $configuration ['single'] = PMIngredients::find($id)->toArray();
+
         return view('admin.adminSingle', $configuration);
     }
 
@@ -108,7 +106,14 @@ class PMIngredientsController extends BaseAPIController
      */
     public function adminEdit($id)
     {
-        return view('admin.core');
+        $config = $this->getRoutesData();
+
+        $config['item'] = PMIngredients::find($id);
+
+        $config['item']->pluck('id')->toArray();
+
+        return view('admin.adminIngredientsEdit', $config);
+
     }
 
     /**
@@ -120,7 +125,7 @@ class PMIngredientsController extends BaseAPIController
      */
     public function adminUpdate($id)
     {
-        //
+       //
     }
 
     /**
@@ -135,6 +140,6 @@ class PMIngredientsController extends BaseAPIController
         PMIngredients::destroy($id);
 
         return json_encode(["success" => true, "id" => $id]);
-//TODO:: refresh VIEW
+          //TODO:: refresh VIEW
     }
 }
