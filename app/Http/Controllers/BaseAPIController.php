@@ -3,7 +3,16 @@
 use Illuminate\Routing\Controller;
 
 class BaseAPIController extends Controller {
-
+    /**
+     * Store a newly created resource in storage.
+     * POST /baseapi
+     *
+     * @return Response
+     */
+    public function apiIndex()
+    {
+        return response()->json(['success'=> false,'message'=>'Method not implemented']);
+    }
 
 	/**
 	 * Store a newly created resource in storage.

@@ -2,15 +2,13 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
-
 class PMPermissions extends CoreModel
 {
     /**
      * Table name
      * @var string
      */
-    protected $table = 'pm_permisions';
+    protected $table = 'pm_permissions';
 
     /**
      * Fields which will be manipulated
