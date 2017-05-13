@@ -11,11 +11,11 @@ class PMPizzaIngredientsConnections extends Model
      * Table name
      * @var string
      */
-    protected $table = 'pm_pizza_ingridients_conn';
+    protected $table = 'pm_pizza_ingredients_conn';
 
     /**
      * Fields which will be manipulated
      * @var array
      */
-    protected $fillable = ['pizza_id', 'ingridients_id'];
+    protected $fillable = ['pizza_id', 'ingredients_id'];
 }
