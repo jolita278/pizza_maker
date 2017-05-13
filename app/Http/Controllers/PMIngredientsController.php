@@ -17,6 +17,7 @@ class PMIngredientsController extends BaseAPIController
         $configuration ['list'] = PMIngredients::get()->toArray();
         return view('admin.adminList', $configuration);
     }
+
     /**
      * Get routes data
      *
@@ -30,6 +31,7 @@ class PMIngredientsController extends BaseAPIController
         $configuration ['routeNew'] = 'app.admin.ingredients.create';
         return $configuration;
     }
+
     /**
      * Show the form for creating a new resource.
      * GET /pmingredients/admincreate
@@ -69,12 +71,7 @@ class PMIngredientsController extends BaseAPIController
 
         }
 
-        PMIngredients::create(
-            [
-                'name' => $data['name'],
-                'calories' => $data['calories'],
-            ]
-        );
+        PMIngredients::create();
 
         $config['success_message'] = ['id' => 'Įrašas sėkmingai įrašytas į DB! ', 'message' => 'Sukurtas naujas ingridientas -  ' . $data['name']];
 
@@ -125,7 +122,33 @@ class PMIngredientsController extends BaseAPIController
      */
     public function adminUpdate($id)
     {
-       //
+        $record = PMIngredients::find($id);
+
+        $data = request()->all($id);
+
+        $calories = $data['calories'];
+
+        $name = $data['name'];
+
+        if ($name == null) {
+
+            $config['error'] = ['id' => 'Klaida 00002', 'message' => 'Neužpildytas laukas "Ingridiento pavadinimas" !'];
+
+//            return view('admin.adminIngredientsEdit', $config);
+            return $this->adminEdit($id);
+
+        } elseif ($calories == null) {
+
+//            $config['error'] = ['id' => 'Klaida 00002', 'message' => 'Neužpildytas laukas "Kalorijos"!'];
+            return $this->adminEdit($id);
+        }
+
+        $record->update($data);
+
+//        $config['success_message'] = ['id' => 'Įrašas sėkmingai atnaujintas! ', 'message' => 'Atnaujintas įrašas -  ' . $data['name']];
+//        return view('admin.adminIngredientsEdit', $config);
+
+        return $this->adminShow($id);
     }
 
     /**
@@ -140,6 +163,6 @@ class PMIngredientsController extends BaseAPIController
         PMIngredients::destroy($id);
 
         return json_encode(["success" => true, "id" => $id]);
-          //TODO:: refresh VIEW
+        //TODO:: refresh VIEW
     }
 }
