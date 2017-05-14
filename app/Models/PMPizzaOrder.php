@@ -25,6 +25,7 @@ class PMPizzaOrder extends CoreModel
     {
         return $this->hasOne(PMPad::class, 'id', 'pad_id');
     }
+
     /**
      * Returns Cheese data from DB
      * @return mixed
@@ -34,6 +35,17 @@ class PMPizzaOrder extends CoreModel
     {
         return $this->hasOne(PMCheese::class, 'id', 'cheese_id');
     }
+
+    /**
+     * Takes user data from DB
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     *
+     */
+    public function userData()
+    {
+        return $this->hasOne(PMUsers::class, 'id', 'user_id');
+    }
+
     /**
      * Returns Ingredients data
      * @return mixed
@@ -43,6 +55,7 @@ class PMPizzaOrder extends CoreModel
     {
         return $this->belongsToMany(PMPizzaIngredientsConnections::class, 'pm_pizza_ingredients_conn', 'pizza_id', 'ingredients_id')->with(['ingredientsData']);
     }
+    
     /**
      * Returns Ingredients data
      * @return mixed
