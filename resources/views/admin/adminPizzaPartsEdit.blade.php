@@ -1,6 +1,6 @@
 @extends('admin.core')
 
-@section('adminIngredientsEdit')
+@section('adminPizzaPartsEdit')
     @if(isset($success_message))
 
         @foreach($success_message as $message)
@@ -20,7 +20,7 @@
 
         {!!Form::open(['url' => route($routeEdit, $item['id'])]) !!}
         <br>
-        {{Form::label('name', 'Ingridiento pavadinimas')}}<br>
+        {{Form::label('name', 'Pavadinimas')}}<br>
         {{Form::text('name', $item['name'])}}
 
         <br>

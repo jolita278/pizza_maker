@@ -17,7 +17,6 @@ class PMIngredientsController extends BaseAPIController
         $configuration ['list'] = PMIngredients::orderBy('updated_at', 'desc')->get()->toArray();
         return view('admin.adminList', $configuration);
     }
-
     /**
      * Get routes data
      *
@@ -41,7 +40,7 @@ class PMIngredientsController extends BaseAPIController
      */
     public function adminCreate()
     {
-        return view('admin.adminIngredientsCreate');
+        return view('admin.adminPizzaPartsCreate');
     }
 
     /**
@@ -53,35 +52,25 @@ class PMIngredientsController extends BaseAPIController
     public function adminStore()
     {
         $data = request()->all();
-
         $calories = $data['calories'];
-
         $name = $data['name'];
+        $config = $this->getRoutesData();
 
         if ($name == null) {
-
             $config['error'] = ['id' => 'Klaida 00002', 'message' => 'Neužpildytas laukas "Ingridiento pavadinimas" !'];
-
-            return $this->adminIndex($config);
-
+            return view('admin.adminPizzaPartsCreate', $config);
         } elseif ($calories == null) {
-
             $config['error'] = ['id' => 'Klaida 00002', 'message' => 'Neužpildytas laukas "Kalorijos"!'];
-
-            return $this->adminIndex($config);
-
+            return view('admin.adminPizzaPartsCreate', $config);
         }
-
         PMIngredients::create(
             [
                 'name' => $data['name'],
                 'calories' => $data['calories'],
             ]
         );
-
         $config['success_message'] = ['id' => 'Įrašas sėkmingai įrašytas į DB! ', 'message' => 'Sukurtas naujas ingridientas -  ' . $data['name']];
-
-        return $this->adminIndex($config);
+        return view('admin.adminPizzaPartsCreate', $config);
     }
 
     /**
@@ -115,7 +104,7 @@ class PMIngredientsController extends BaseAPIController
 
         $config['item']->pluck('id')->toArray();
 
-        return view('admin.adminIngredientsEdit', $config);
+        return view('admin.adminPizzaPartsEdit', $config);
 
     }
 
@@ -129,32 +118,23 @@ class PMIngredientsController extends BaseAPIController
     public function adminUpdate($id)
     {
         $record = PMIngredients::find($id);
-
         $data = request()->all($id);
-
         $calories = $data['calories'];
-
         $name = $data['name'];
+        $config = $this->getRoutesData();
+        $config['item'] = PMIngredients::find($id);
+        $config['item']->pluck('id')->toArray();
 
         if ($name == null) {
-
             $config['error'] = ['id' => 'Klaida 00002', 'message' => 'Neužpildytas laukas "Ingridiento pavadinimas" !'];
-
-//            return view('admin.adminIngredientsEdit', $config);
-            return $this->adminEdit($id);
-
+           return view('admin.adminPizzaPartsEdit', $config);
         } elseif ($calories == null) {
-
-//            $config['error'] = ['id' => 'Klaida 00002', 'message' => 'Neužpildytas laukas "Kalorijos"!'];
-            return $this->adminEdit($id);
+           $config['error'] = ['id' => 'Klaida 00002', 'message' => 'Neužpildytas laukas "Kalorijos"!'];
+            return view('admin.adminPizzaPartsEdit', $config);
         }
-
         $record->update($data);
-
-//        $config['success_message'] = ['id' => 'Įrašas sėkmingai atnaujintas! ', 'message' => 'Atnaujintas įrašas -  ' . $data['name']];
-//        return view('admin.adminIngredientsEdit', $config);
-
-        return $this->adminShow($id);
+       $config['success_message'] = ['id' => 'Įrašas sėkmingai atnaujintas! ', 'message' => 'Atnaujintas įrašas -  ' . $data['name']];
+       return view('admin.adminPizzaPartsEdit', $config);
     }
 
     /**

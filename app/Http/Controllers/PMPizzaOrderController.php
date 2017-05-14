@@ -1,10 +1,26 @@
 <?php namespace App\Http\Controllers;
 
 
+use App\Models\PMCheese;
+use App\Models\PMIngredients;
+use App\Models\PMPad;
 use App\Models\PMPizzaOrder;
 
 class PMPizzaOrderController extends BaseAPIController {
 
+    /**
+     * Display a listing of the resource.
+     * GET /pmpizzaorder
+     *
+     * @return Response
+     */
+    public function index()
+    {
+        $data = [];
+        $data ['routeShow'] = 'app.user.pizzaOrders.show';
+        $data['pizzaOrders'] = PMPizzaOrder::with(['padData', 'cheeseData', 'pizzaIngredientsConnectionData'])->get()->toArray();
+        return view('front-end.userList', $data);
+    }
 
 	/**
 	 * Show the form for creating a new resource.
@@ -14,8 +30,12 @@ class PMPizzaOrderController extends BaseAPIController {
 	 */
 	public function create()
 	{
-        $configuration ['list'] = PMPizzaOrder::get()->toArray();
-        return view('admin.adminList', $configuration);
+        $data['pad'] = PMPad::pluck('name', 'id')->toArray();
+        $data['cheese'] = PMCheese::pluck('name', 'id')->toArray();
+        $data['ingredients'] = PMIngredients::pluck('name', 'id')->toArray();
+
+
+        return view('front-end.userPizzaOrderCreate', $data);
 	}
 
 	/**
@@ -26,7 +46,19 @@ class PMPizzaOrderController extends BaseAPIController {
 	 */
 	public function store()
 	{
-		//
+        $data = request()->all();
+        $record = PMPizzaOrder::create(array(
+            'pad_id' => $data['base'],
+            'cheese_id' => $data['cheese'],
+            'description' => $data['description'],
+        ));
+        $record['pad'] = PMPad::pluck('name', 'id')->toArray();
+        $record['cheese'] = PMCheese::pluck('name', 'id')->toArray();
+        $record['ingredients'] = PMIngredients::pluck('name', 'id')->toArray();
+
+        $record->ingredientsConnectionData()->sync($data['ingredients']);
+
+        return view('front-end.userPizzaOrderCreate', $record->toArray());
 	}
 
 	/**
@@ -38,7 +70,8 @@ class PMPizzaOrderController extends BaseAPIController {
 	 */
 	public function show($id)
 	{
-        return view('userSingle');
+        $data['pizzaOrder'] = PMPizzaOrder::with(['padData', 'cheeseData', 'pizzaIngredientsConnectionData'])->find($id)->toArray();
+        return view('front-end.userSingle', $data);
 	}
 
     /**
@@ -51,7 +84,6 @@ class PMPizzaOrderController extends BaseAPIController {
     {
         return view('adminList');
     }
-
     /**
      * Show the form for creating a new resource.
      * GET /pmpizzaorder/create
