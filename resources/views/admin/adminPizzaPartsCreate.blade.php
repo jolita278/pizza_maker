@@ -1,8 +1,7 @@
 @extends('admin.core')
 
-@section('adminIngredientsCreate')
+@section('adminPizzaPartsCreate')
     @if(isset($success_message))
-
         @foreach($success_message as $message)
             <div style="background:green; color:white"> {{$message}}!</div>
         @endforeach
@@ -18,7 +17,7 @@
     <div class="container">
         <h2>Sukurti naują įrašą</h2>
 
-        {!! Form::open(['url' => route('app.admin.ingredients.create')]) !!}
+        {!! Form::open(['url' => route($routeNew)]) !!}
         <br>
         {{ Form::label('name', 'Pavadinimas')}}<br>
         {{Form::text('name')}}
