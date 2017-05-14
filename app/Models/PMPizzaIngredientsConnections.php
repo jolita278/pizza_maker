@@ -18,4 +18,9 @@ class PMPizzaIngredientsConnections extends Model
      * @var array
      */
     protected $fillable = ['pizza_id', 'ingredients_id'];
+
+    public function ingredientsData()
+    {
+        return $this->hasOne(PMIngredients::class, 'id', 'ingredients_id');
+    }
 }

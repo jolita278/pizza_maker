@@ -6,7 +6,8 @@
 </head>
 <body style="background-color: lightgoldenrodyellow">
 
-@yeld('content')
-
+@yield('list')
+@yield('pizzaOrderCreate')
+@yield('single')
 </body>
 </html>
