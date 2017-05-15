@@ -1,106 +1,96 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
 
 Route::group(['prefix' => 'pizza'], function () {
+    Route::get('/', ['uses' => 'PMPizzaOrderController@index']);
     Route::get('/create', ['uses' => 'PMPizzaOrderController@create']);
-    Route::post('/create', ['as' => 'app.pizzaOrders.create', 'uses' => 'PMPizzaOrderController@store']);
-    Route::get('/{id}', ['uses' => 'PMPizzaOrderController@show']);
+    Route::post('/create', ['as' => 'app.user.pizzaOrders.create', 'uses' => 'PMPizzaOrderController@store']);
+    Route::get('/{id}', ['as' => 'app.user.pizzaOrders.show', 'uses' => 'PMPizzaOrderController@show']);
 });
 
 Route::group(['prefix' => 'admin'], function () {
     Route::group(['prefix' => 'pizzaOrders'], function () {
-        Route::get('/', ['as' => 'app.pizzaOrders.index', 'uses' => 'PMPizzaOrderController@index']);
-        Route::get('/create', ['uses' => 'PMPizzaOrderController@create']);
-        Route::post('/create', ['as' => 'app.pizzaOrders.create', 'uses' => 'PMPizzaOrderController@store']);
+        Route::get('/', ['as' => 'app.admin.pizzaOrders.index', 'uses' => 'PMPizzaOrderController@adminIndex']);
+        Route::get('/create', ['uses' => 'PMPizzaOrderController@adminCreate']);
+        Route::post('/create', ['as' => 'app.admin.pizzaOrders.create', 'uses' => 'PMPizzaOrderController@adminStore']);
 
         Route::group(['prefix' => '{id}'], function () {
-            Route::get('/', ['uses' => 'PMPizzaOrderController@show']);
-            Route::get('/edit', ['as' => 'app.pizzaOrders.edit', 'uses' => 'PMPizzaOrderController@edit']);
-            Route::post('/edit', ['uses' => 'PMPizzaOrderController@update']);
-            Route::delete('/', ['as' => 'app.pizzaOrders.delete', 'uses' => 'PMPizzaOrderController@destroy']);
+            Route::get('/', ['uses' => 'PMPizzaOrderController@adminShow']);
+            Route::get('/edit', ['as' => 'app.admin.pizzaOrders.edit', 'uses' => 'PMPizzaOrderController@adminEdit']);
+            Route::post('/edit', ['uses' => 'PMPizzaOrderController@adminUpdate']);
+            Route::delete('/', ['as' => 'app.admin.pizzaOrders.showDelete', 'uses' => 'PMPizzaOrderController@adminDestroy']);
         });
     });
     Route::group(['prefix' => 'cheese'], function () {
-        Route::get('/', ['as' => 'app.cheese.index', 'uses' => 'PMCheeseController@index']);
-        Route::get('/create', ['uses' => 'PMCheeseController@create']);
-        Route::post('/create', ['as' => 'app.cheese.create', 'uses' => 'PMCheeseController@store']);
+        Route::get('/', ['as' => 'app.admin.cheese.index', 'uses' => 'PMCheeseController@adminIndex']);
+        Route::get('/create', ['uses' => 'PMCheeseController@adminCreate']);
+        Route::post('/create', ['as' => 'app.admin.cheese.create', 'uses' => 'PMCheeseController@adminStore']);
 
         Route::group(['prefix' => '{id}'], function () {
-            Route::get('/', ['uses' => 'PMCheeseController@show']);
-            Route::get('/edit', ['as' => 'app.cheese.edit', 'uses' => 'PMCheeseController@edit']);
-            Route::post('/edit', ['uses' => 'PMCheeseController@update']);
-            Route::delete('/', ['as' => 'app.cheese.delete', 'uses' => 'PMCheeseController@destroy']);
+            Route::get('/', ['uses' => 'PMCheeseController@adminShow']);
+            Route::get('/edit', ['as' => 'app.admin.cheese.edit', 'uses' => 'PMCheeseController@adminEdit']);
+            Route::post('/edit', ['uses' => 'PMCheeseController@adminUpdate']);
+            Route::delete('/', ['as' => 'app.admin.cheese.showDelete', 'uses' => 'PMCheeseController@adminDestroy']);
         });
     });
     Route::group(['prefix' => 'ingredients'], function () {
-        Route::get('/', ['as' => 'app.ingredients.index', 'uses' => 'PMIngredientsController@index']);
-        Route::get('/create', ['uses' => 'PMIngredientsController@create']);
-        Route::post('/create', ['as' => 'app.ingredients.create', 'uses' => 'PMIngredientsController@store']);
+        Route::get('/', ['as' => 'app.admin.ingredients.index', 'uses' => 'PMIngredientsController@adminIndex']);
+        Route::get('/create', ['uses' => 'PMIngredientsController@adminCreate']);
+        Route::post('/create', ['as' => 'app.admin.ingredients.create', 'uses' => 'PMIngredientsController@adminStore']);
 
         Route::group(['prefix' => '{id}'], function () {
-            Route::get('/', ['uses' => 'PMIngredientsController@show']);
-            Route::get('/edit', ['as' => 'app.ingredients.edit', 'uses' => 'PMIngredientsController@edit']);
-            Route::post('/edit', ['uses' => 'PMIngredientsController@update']);
-            Route::delete('/', ['as' => 'app.ingredients.delete', 'uses' => 'PMIngredientsController@destroy']);
+            Route::get('/edit', ['as' => 'app.admin.ingredients.edit', 'uses' => 'PMIngredientsController@adminEdit']);
+            Route::post('/edit', ['uses' => 'PMIngredientsController@adminUpdate']);
+            Route::get('/', ['uses' => 'PMIngredientsController@adminShow']);
+            Route::delete('/', ['as' => 'app.admin.ingredients.showDelete', 'uses' => 'PMIngredientsController@adminDestroy']);
         });
     });
     Route::group(['prefix' => 'pad'], function () {
-        Route::get('/', ['as' => 'app.pad.index', 'uses' => 'PMPadController@index']);
-        Route::get('/create', ['as' => 'app.pad.create', 'uses' => 'PMPadController@create']);
-        Route::post('/create', ['uses' => 'PMPadController@store']);
+        Route::get('/', ['as' => 'app.admin.pad.index', 'uses' => 'PMPadController@adminIndex']);
+        Route::get('/create', ['as' => 'app.admin.pad.create', 'uses' => 'PMPadController@adminCreate']);
+        Route::post('/create', ['uses' => 'PMPadController@adminStore']);
 
         Route::group(['prefix' => '{id}'], function () {
-            Route::get('/', ['uses' => 'PMPadController@show']);
-            Route::get('/edit', ['as' => 'app.pad.edit', 'uses' => 'PMPadController@edit']);
-            Route::post('/edit', ['uses' => 'PMPadController@update']);
-            Route::delete('/', ['as' => 'app.pad.delete', 'uses' => 'PMPadController@destroy']);
+            Route::get('/', ['uses' => 'PMPadController@adminShow']);
+            Route::get('/edit', ['as' => 'app.admin.pad.edit', 'uses' => 'PMPadController@adminEdit']);
+            Route::post('/edit', ['uses' => 'PMPadController@adminUpdate']);
+            Route::delete('/', ['as' => 'app.admin.pad.showDelete', 'uses' => 'PMPadController@adminDestroy']);
         });
     });
     Route::group(['prefix' => 'permissions'], function () {
-        Route::get('/', ['as' => 'app.permissions.index', 'uses' => 'PMPermissionsController@index']);
-        Route::get('/create', ['as' => 'app.permissions.create', 'uses' => 'PMPermissionsController@create']);
-        Route::post('/create', ['uses' => 'PMPermissionsController@store']);
+        Route::get('/', ['as' => 'app.admin.permissions.index', 'uses' => 'PMPermissionsController@adminIndex']);
+        Route::get('/create', ['as' => 'app.admin.permissions.create', 'uses' => 'PMPermissionsController@adminCreate']);
+        Route::post('/create', ['uses' => 'PMPermissionsController@adminStore']);
 
         Route::group(['prefix' => '{id}'], function () {
-            Route::get('/', ['uses' => 'PMPermissionsController@show']);
-            Route::get('/edit', ['as' => 'app.permissions.edit', 'uses' => 'PMPermissionsController@edit']);
-            Route::post('/edit', ['uses' => 'PMPermissionsController@update']);
-            Route::delete('/', ['as' => 'app.permissions.delete', 'uses' => 'PMPermissionsController@destroy']);
+            Route::get('/', ['uses' => 'PMPermissionsController@adminShow']);
+            Route::get('/edit', ['as' => 'app.admin.permissions.edit', 'uses' => 'PMPermissionsController@adminEdit']);
+            Route::post('/edit', ['uses' => 'PMPermissionsController@adminUpdate']);
+            Route::delete('/', ['as' => 'app.admin.permissions.showDelete', 'uses' => 'PMPermissionsController@adminDestroy']);
         });
     });
     Route::group(['prefix' => 'roles'], function () {
-        Route::get('/', ['as' => 'app.roles.index', 'uses' => 'PMRolesController@index']);
-        Route::get('/create', ['as' => 'app.roles.create', 'uses' => 'PMRolesController@create']);
-        Route::post('/create', ['uses' => 'PMRolesController@store']);
+        Route::get('/', ['as' => 'app.admin.roles.index', 'uses' => 'PMRolesController@adminIndex']);
+        Route::get('/create', ['as' => 'app.admin.roles.create', 'uses' => 'PMRolesController@adminCreate']);
+        Route::post('/create', ['uses' => 'PMRolesController@adminStore']);
 
         Route::group(['prefix' => '{id}'], function () {
-            Route::get('/', ['uses' => 'PMRolesController@show']);
-            Route::get('/edit', ['as' => 'app.roles.edit', 'uses' => 'PMRolesController@edit']);
-            Route::post('/edit', ['uses' => 'PMRolesController@update']);
-            Route::delete('/', ['as' => 'app.roles.delete', 'uses' => 'PMRolesController@destroy']);
+            Route::get('/', ['uses' => 'PMRolesController@adminShow']);
+            Route::get('/edit', ['as' => 'app.admin.roles.edit', 'uses' => 'PMRolesController@adminEdit']);
+            Route::post('/edit', ['uses' => 'PMRolesController@adminUpdate']);
+            Route::delete('/', ['as' => 'app.admin.roles.showDelete', 'uses' => 'PMRolesController@adminDestroy']);
         });
     });
     Route::group(['prefix' => 'users'], function () {
-        Route::get('/', ['as' => 'app.user.index', 'uses' => 'PMUsersController@index']);
-        Route::get('/create', ['as' => 'app.user.create', 'uses' => 'PMUsersController@create']);
-        Route::post('/create', ['uses' => 'PMUsersController@store']);
+        Route::get('/', ['as' => 'app.admin.user.index', 'uses' => 'PMUsersController@adminIndex']);
+        Route::get('/create', ['as' => 'app.admin.user.create', 'uses' => 'PMUsersController@adminCreate']);
+        Route::post('/create', ['uses' => 'PMUsersController@adminStore']);
 
         Route::group(['prefix' => '{id}'], function () {
-            Route::get('/', ['uses' => 'PMUsersController@show']);
-            Route::get('/edit', ['as' => 'app.user.edit', 'uses' => 'PMUsersController@edit']);
-            Route::post('/edit', ['uses' => 'PMUsersController@update']);
-            Route::delete('/', ['as' => 'app.user.delete', 'uses' => 'PMUsersController@destroy']);
+            Route::get('/', ['uses' => 'PMUsersController@adminShow']);
+            Route::get('/edit', ['as' => 'app.user.edit', 'uses' => 'PMUsersController@adminEdit']);
+            Route::post('/edit', ['uses' => 'PMUsersController@adminUpdate']);
+            Route::delete('/', ['as' => 'app.admin.user.showDelete', 'uses' => 'PMUsersController@adminDestroy']);
         });
     });
 });
