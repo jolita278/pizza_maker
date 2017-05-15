@@ -4,8 +4,8 @@
 Route::group(['prefix' => 'pizza'], function () {
     Route::get('/', ['uses' => 'PMPizzaOrderController@index']);
     Route::get('/create', ['uses' => 'PMPizzaOrderController@create']);
-    Route::post('/create', ['as' => 'app.pizzaOrders.create', 'uses' => 'PMPizzaOrderController@store']);
-    Route::get('/{id}', ['uses' => 'PMPizzaOrderController@show']);
+    Route::post('/create', ['as' => 'app.user.pizzaOrders.create', 'uses' => 'PMPizzaOrderController@store']);
+    Route::get('/{id}', ['as' => 'app.user.pizzaOrders.show', 'uses' => 'PMPizzaOrderController@show']);
 });
 
 Route::group(['prefix' => 'admin'], function () {
@@ -22,9 +22,9 @@ Route::group(['prefix' => 'admin'], function () {
         });
     });
     Route::group(['prefix' => 'cheese'], function () {
-        Route::get('/', ['as' => 'app.admin.admin.cheese.index', 'uses' => 'PMCheeseController@adminIndex']);
+        Route::get('/', ['as' => 'app.admin.cheese.index', 'uses' => 'PMCheeseController@adminIndex']);
         Route::get('/create', ['uses' => 'PMCheeseController@adminCreate']);
-        Route::post('/create', ['as' => 'app.admin.admin.cheese.create', 'uses' => 'PMCheeseController@adminStore']);
+        Route::post('/create', ['as' => 'app.admin.cheese.create', 'uses' => 'PMCheeseController@adminStore']);
 
         Route::group(['prefix' => '{id}'], function () {
             Route::get('/', ['uses' => 'PMCheeseController@adminShow']);
