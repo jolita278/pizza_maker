@@ -1,5 +1,7 @@
 <?php
-
+Route:: get ('/', function (){
+    return view ('welcome');
+});
 
 Route::group(['prefix' => 'pizza'], function () {
     Route::get('/', ['uses' => 'PMPizzaOrderController@index']);
@@ -96,3 +98,6 @@ Route::group(['prefix' => 'admin'], function () {
 });
 
 
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
