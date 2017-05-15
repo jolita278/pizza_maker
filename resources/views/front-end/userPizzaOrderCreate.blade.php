@@ -1,7 +1,7 @@
 @extends('front-end.core')
 @section('pizzaOrderCreate')
 
-{!! Form::open(['url' => route('app.pizzaOrders.create')]) !!}
+{!! Form::open(['url' => route('app.user.pizzaOrders.create')]) !!}
 {{Form::label('base', 'Picos padas:')}}
 <br/>
 {{Form::select('base', $pad)}}

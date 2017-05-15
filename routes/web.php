@@ -1,6 +1,5 @@
 <?php
 
-
 Route::group(['prefix' => 'pizza'], function () {
     Route::get('/', ['uses' => 'PMPizzaOrderController@index']);
     Route::get('/create', ['uses' => 'PMPizzaOrderController@create']);
@@ -93,6 +92,9 @@ Route::group(['prefix' => 'admin'], function () {
             Route::delete('/', ['as' => 'app.admin.user.showDelete', 'uses' => 'PMUsersController@adminDestroy']);
         });
     });
+
 });
 
+Auth::routes();
 
+Route::get('/home', 'HomeController@index')->name('home');

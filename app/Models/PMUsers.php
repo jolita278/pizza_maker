@@ -2,7 +2,9 @@
 
 namespace App\Models;
 
-class PMUsers extends CoreModel
+use App\User;
+
+class PMUsers extends User
 {
     /**
      * Table name
@@ -14,5 +16,13 @@ class PMUsers extends CoreModel
      * Fields which will be manipulated
      * @var array
      */
-    protected $fillable = ['id', 'name', 'email', 'password', 'remember_token'];
+    protected $fillable = ['id', 'name', 'email', 'password'];
+    /**
+     * The attributes that should be hidden for arrays.
+     *
+     * @var array
+     */
+    protected $hidden = [
+        'password', 'remember_token',
+    ];
 }
