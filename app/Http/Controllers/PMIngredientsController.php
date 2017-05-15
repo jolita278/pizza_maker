@@ -40,7 +40,7 @@ class PMIngredientsController extends BaseAPIController
      */
     public function adminCreate()
     {
-        return view('admin.adminPizzaPartsCreate');
+        return view('admin.adminPizzaPartsCreate', $this->getRoutesData());
     }
 
     /**
