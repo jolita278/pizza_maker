@@ -18,7 +18,7 @@ class PMPizzaOrderController extends BaseAPIController {
     {
         $data = [];
         $data ['routeShow'] = 'app.user.pizzaOrders.show';
-        $data['pizzaOrders'] = PMPizzaOrder::with(['padData', 'cheeseData', 'pizzaIngredientsConnectionData'])->get()->toArray();
+        $data['pizzaOrders'] = $this->apiIndex()->toArray();
         return view('front-end.userList', $data);
     }
 
@@ -70,7 +70,7 @@ class PMPizzaOrderController extends BaseAPIController {
 	 */
 	public function show($id)
 	{
-        $data['pizzaOrder'] = PMPizzaOrder::with(['padData', 'cheeseData', 'pizzaIngredientsConnectionData'])->find($id)->toArray();
+        $data['pizzaOrder'] = $this->apiShow($id)->toArray();
         return view('front-end.userSingle', $data);
 	}
 
@@ -152,5 +152,26 @@ class PMPizzaOrderController extends BaseAPIController {
     public function adminDestroy($id)
     {
         //
+    }
+    /**
+     * Display a listing of the resource.
+     * GET /pmpizzaorder
+     *
+     * @return Response
+     */
+    public function apiIndex()
+    {
+        return PMPizzaOrder::with(['padData', 'cheeseData', 'pizzaIngredientsConnectionData'])->get();
+    }
+    /**
+     * Display the specified resource.
+     * GET /pmpizzaorder/{id}
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function apiShow($id)
+    {
+        return PMPizzaOrder::with(['padData', 'cheeseData', 'pizzaIngredientsConnectionData'])->find($id);
     }
 }

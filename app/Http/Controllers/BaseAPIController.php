@@ -15,17 +15,6 @@ class BaseAPIController extends Controller {
     }
 
 	/**
-	 * Store a newly created resource in storage.
-	 * POST /baseapi
-	 *
-	 * @return Response
-	 */
-	public function apiStore()
-	{
-		return response()->json(['success'=> false,'message'=>'Method not implemented']);
-	}
-
-	/**
 	 * Display the specified resource.
 	 * GET /baseapi/{id}
 	 *
