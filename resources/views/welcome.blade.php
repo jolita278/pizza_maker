@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>Pizza maker </title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
@@ -79,11 +79,11 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel
+                    Pizza maker
                 </div>
 
                 <div class="links">
-                    <a href="https://laravel.com/docs">Documentation</a>
+                    <a href="{{route('app.user.pizzaOrders.create') }}">Pizza order form</a>
                     <a href="https://laracasts.com">Laracasts</a>
                     <a href="https://laravel-news.com">News</a>
                     <a href="https://forge.laravel.com">Forge</a>
