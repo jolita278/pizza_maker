@@ -53,7 +53,7 @@ class PMPizzaOrder extends CoreModel
      */
     public function ingredientsConnectionData()
     {
-        return $this->belongsToMany(PMPizzaIngredientsConnections::class, 'pm_pizza_ingredients_conn', 'pizza_id', 'ingredients_id')->with(['ingredientsData']);
+        return $this->belongsToMany(PMIngredients::class, 'pm_pizza_ingredients_conn', 'pizza_id', 'ingredients_id');
     }
     
     /**
