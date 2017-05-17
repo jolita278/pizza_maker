@@ -51,6 +51,7 @@ class PMPizzaOrderController extends BaseAPIController {
             'pad_id' => $data['base'],
             'cheese_id' => $data['cheese'],
             'description' => $data['description'],
+            'user_id' => auth()->user()->id,
         ));
         $record['pad'] = PMPad::pluck('name', 'id')->toArray();
         $record['cheese'] = PMCheese::pluck('name', 'id')->toArray();
