@@ -2,11 +2,15 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
 
-class PMUsers extends CoreModel
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+
+class PMUsers extends Authenticatable
 {
-    /**
+    use Notifiable;
+
+       /**
      * Table name
      * @var string
      */
@@ -16,5 +20,11 @@ class PMUsers extends CoreModel
      * Fields which will be manipulated
      * @var array
      */
-    protected $fillable = ['id', 'name', 'email', 'password', 'remember_token'];
+    protected $fillable = ['id', 'name', 'email', 'password'];
+
+    /**
+     * Fields which will be hidden
+     * @var array
+     */
+    protected $hidden = ['password', 'remember_token',];
 }

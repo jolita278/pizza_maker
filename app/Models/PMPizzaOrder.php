@@ -2,8 +2,6 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
-
 class PMPizzaOrder extends CoreModel
 {
     /**
@@ -17,4 +15,54 @@ class PMPizzaOrder extends CoreModel
      * @var array
      */
     protected $fillable = ['id', 'pad_id', 'cheese_id', 'description', 'user_id'];
+
+    /**
+     * Takes pad data from DB
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     *
+     */
+    public function padData()
+    {
+        return $this->hasOne(PMPad::class, 'id', 'pad_id');
+    }
+
+    /**
+     * Returns Cheese data from DB
+     * @return mixed
+     *
+     */
+    public function cheeseData()
+    {
+        return $this->hasOne(PMCheese::class, 'id', 'cheese_id');
+    }
+
+    /**
+     * Takes user data from DB
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     *
+     */
+    public function userData()
+    {
+        return $this->hasOne(PMUsers::class, 'id', 'user_id');
+    }
+
+    /**
+     * Returns Ingredients data
+     * @return mixed
+     *
+     */
+    public function ingredientsConnectionData()
+    {
+        return $this->belongsToMany(PMPizzaIngredientsConnections::class, 'pm_pizza_ingredients_conn', 'pizza_id', 'ingredients_id')->with(['ingredientsData']);
+    }
+    
+    /**
+     * Returns Ingredients data
+     * @return mixed
+     *
+     */
+    public function pizzaIngredientsConnectionData()
+    {
+        return $this->hasMany(PMPizzaIngredientsConnections::class, 'pizza_id', 'id')->with(['ingredientsData']);
+    }
 }
