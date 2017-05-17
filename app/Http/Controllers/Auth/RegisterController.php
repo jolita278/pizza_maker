@@ -63,11 +63,14 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return PMUsers::create([
+        $record = PMUsers::create([
             'id' => Uuid::uuid4(),
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
+        $record->rolesConnectionData()->sync(array('member', 'user'));
+
+        return $record;
     }
 }
