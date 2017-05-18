@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\User;
+use App\Models\PMUsers;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Ramsey\Uuid\Uuid;
 
 class RegisterController extends Controller
 {
@@ -50,7 +51,7 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6|confirmed',
+            'password' => 'required|string|min:1|confirmed',
         ]);
     }
 
@@ -62,10 +63,14 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $record = PMUsers::create([
+            'id' => Uuid::uuid4(),
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
+        $record->rolesConnectionData()->sync(array('member', 'user'));
+
+        return $record;
     }
 }

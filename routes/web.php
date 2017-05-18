@@ -1,9 +1,11 @@
 <?php
-
+Route:: get ('/', function (){
+    return view ('welcome');
+});
 
 Route::group(['prefix' => 'pizza'], function () {
     Route::get('/', ['uses' => 'PMPizzaOrderController@index']);
-    Route::get('/create', ['uses' => 'PMPizzaOrderController@create']);
+    Route::get('/create', ['middleware' => ['auth', 'notMemberRestriction'], 'uses' => 'PMPizzaOrderController@create']);
     Route::post('/create', ['as' => 'app.user.pizzaOrders.create', 'uses' => 'PMPizzaOrderController@store']);
     Route::get('/{id}', ['as' => 'app.user.pizzaOrders.show', 'uses' => 'PMPizzaOrderController@show']);
 });
@@ -96,3 +98,6 @@ Route::group(['prefix' => 'admin'], function () {
 });
 
 
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
