@@ -20,9 +20,9 @@ class CreateResourceTable extends Migration
                 $table->softDeletes();
                 $table->string('mime_type', 255);
                 $table->string('path', 255);
-                $table->string('width', 255);
-                $table->string('height', 255);
-                $table->string('size', 255);
+                $table->string('width', 255)->nullable();
+                $table->string('height', 255)->nullable();
+                $table->string('size', 255)->nullable();
             });
     }
 
