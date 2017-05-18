@@ -20,7 +20,7 @@
             {{Form::checkbox('ingredients[]', $key)}}
 
             <span @if($superingredient == $key) style="font-weight:800; color: red" @endif>{{$value}}</span>
-            
+
         @endforeach
         <br/>
         {{Form::label('description', 'Komentarai:')}}
