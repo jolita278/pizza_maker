@@ -18,11 +18,9 @@
         @foreach($ingredients as $key => $value)
             <br/>
             {{Form::checkbox('ingredients[]', $key)}}
-            @if($superingredient == $key)
-                <b style="color: red">{{$value}}</b>
-            @else
-               {{$value}}
-            @endif
+
+            <span @if($superingredient == $key) style="font-weight:800; color: red" @endif>{{$value}}</span>
+            
         @endforeach
         <br/>
         {{Form::label('description', 'Komentarai:')}}
