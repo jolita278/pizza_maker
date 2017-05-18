@@ -5,6 +5,7 @@ use App\Models\PMCheese;
 use App\Models\PMIngredients;
 use App\Models\PMPad;
 use App\Models\PMPizzaOrder;
+use Illuminate\Support\Facades\Cache;
 
 class PMPizzaOrderController extends BaseAPIController {
 
@@ -33,6 +34,7 @@ class PMPizzaOrderController extends BaseAPIController {
         $data['pad'] = PMPad::pluck('name', 'id')->toArray();
         $data['cheese'] = PMCheese::pluck('name', 'id')->toArray();
         $data['ingredients'] = PMIngredients::pluck('name', 'id')->toArray();
+$data ['superingredient'] = Cache::get('super-ingredient');
 
 
         return view('front-end.userPizzaOrderCreate', $data);
