@@ -2,6 +2,7 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\AdminCheck;
 use App\Http\Middleware\NotMemberRestriction;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
@@ -58,5 +59,6 @@ class Kernel extends HttpKernel
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'notMemberRestriction' => NotMemberRestriction::class,
+        'admin-check' => AdminCheck::class,
     ];
 }
