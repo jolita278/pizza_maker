@@ -39,7 +39,7 @@ class CreateAdmin extends Command
             'id' => Uuid::uuid4(),
             'name' => $name,
             'email' => $email,
-            'password' => $password,
+            'password' => bcrypt( $password),
         ));
 
         $record->rolesConnectionData()->sync('super-admin');
