@@ -3,7 +3,8 @@
 namespace App\Console;
 
 use App\Console\Commands\CreateAdmin;
-use App\Console\Commands\IngredientBold;
+use App\Console\Commands\SpecialOne;
+
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -15,9 +16,11 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        Ingredientbold::class,
-        CreateAdmin::class
+      
+        CreateAdmin::class,
+        SpecialOne::class,
     ];
+
 
     /**
      * Define the application's command schedule.
@@ -27,7 +30,8 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-         $schedule->command('ingredient:bold')->everyMinute();
+         $schedule->command('make:one')
+               ->everyMinute();
     }
 
     /**

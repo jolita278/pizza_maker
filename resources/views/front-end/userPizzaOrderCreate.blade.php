@@ -15,14 +15,13 @@
         <br/>
         {{Form::label('ingredients', 'Ingridientai (ne daugiau, negu 3):')}}
         <br/>
-        @foreach( $ingredients as $key => $value )
-                <br/>
+
+        @foreach($ingredients as $key => $value)
+            <br/>
             {{Form::checkbox('ingredients[]', $key)}}
-            @if ($superingredient == $key)
-                <b>{{$value}}</b>
-            @else
-                {{$value}}
-            @endif
+
+            <span @if($superingredient == $key) style="font-weight:800; color: red" @endif>{{$value}}</span>
+
         @endforeach
         <br/>
         {{Form::label('description', 'Komentarai:')}}
