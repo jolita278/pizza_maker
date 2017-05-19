@@ -15,6 +15,7 @@
         <br/>
         {{Form::label('ingredients', 'Ingridientai (ne daugiau, negu 3):')}}
         <br/>
+
         @foreach($ingredients as $key => $value)
             <br/>
             {{Form::checkbox('ingredients[]', $key)}}
@@ -33,4 +34,5 @@
 
     </div>
 @endsection
+
 
