@@ -16,8 +16,11 @@
         {{Form::label('ingredients', 'Ingridientai (ne daugiau, negu 3):')}}
         <br/>
         @foreach($ingredients as $key => $value)
-            {{Form::checkbox('ingredients[]', $key)}}{{$value}}
             <br/>
+            {{Form::checkbox('ingredients[]', $key)}}
+
+            <span @if($superingredient == $key) style="font-weight:800; color: red" @endif>{{$value}}</span>
+
         @endforeach
         <br/>
         {{Form::label('description', 'Komentarai:')}}

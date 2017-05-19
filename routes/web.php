@@ -3,14 +3,14 @@ Route:: get ('/', function (){
     return view ('welcome');
 });
 
-Route::group(['prefix' => 'pizza'], function () {
+Route::group(['prefix' => 'pizza','middleware' => ['auth', 'notMemberRestriction']], function () {
     Route::get('/', ['uses' => 'PMPizzaOrderController@index']);
-    Route::get('/create', ['middleware' => ['auth', 'notMemberRestriction'], 'uses' => 'PMPizzaOrderController@create']);
+    Route::get('/create', ['uses' => 'PMPizzaOrderController@create']);
     Route::post('/create', ['as' => 'app.user.pizzaOrders.create', 'uses' => 'PMPizzaOrderController@store']);
     Route::get('/{id}', ['as' => 'app.user.pizzaOrders.show', 'uses' => 'PMPizzaOrderController@show']);
 });
 
-Route::group(['prefix' => 'admin'], function () {
+Route::group(['prefix' => 'admin','middleware' =>['auth', 'admin-check']], function () {
     Route::group(['prefix' => 'pizzaOrders'], function () {
         Route::get('/', ['as' => 'app.admin.pizzaOrders.index', 'uses' => 'PMPizzaOrderController@adminIndex']);
         Route::get('/create', ['uses' => 'PMPizzaOrderController@adminCreate']);
